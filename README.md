@@ -73,7 +73,8 @@ As mentoras gerenciam turmas, acompanham o progresso das alunas e avaliam candid
 ## Equipe
 
 * Ana Paula Tadim
-* Ana Clara Pereira 
+* Ana Clara Pereira
+* Beatriz Coelho
 * Heitor Augusto
 * Michelle de Oliveira
 * Otávio Alves

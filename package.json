@@ -1,0 +1,13 @@
+{
+  "name": "jornada-codigo-x",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Estilos da Plataforma Jornada Código X (Tailwind CSS v3)",
+  "scripts": {
+    "build:css": "tailwindcss -i ./static/src/input.css -o ./static/css/app.css --minify",
+    "watch:css": "tailwindcss -i ./static/src/input.css -o ./static/css/app.css --watch"
+  },
+  "devDependencies": {
+    "tailwindcss": "^3.4.17"
+  }
+}

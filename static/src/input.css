@@ -1,0 +1,97 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* base: fundo claro, texto escuro, fontes da cartilha */
+@layer base {
+  html {
+    @apply bg-codigo-fundo text-codigo-texto font-texto text-base antialiased;
+  }
+
+  h1,
+  h2,
+  h3 {
+    @apply font-titulo font-extrabold leading-tight;
+  }
+
+  h1 {
+    @apply text-3xl sm:text-4xl;
+  }
+
+  h2 {
+    @apply text-2xl;
+  }
+
+  h3 {
+    @apply text-xl font-bold;
+  }
+
+  :focus-visible {
+    @apply outline outline-[3px] outline-offset-2 outline-codigo-texto;
+  }
+}
+
+/* componentes visuais reutilizaveis */
+@layer components {
+  .pagina {
+    @apply mx-auto w-full max-w-5xl px-4 py-8 sm:px-6;
+  }
+
+  .btn {
+    @apply inline-flex min-h-[44px] min-w-[44px] items-center justify-center gap-2 rounded-cartilha
+      border-3 border-codigo-texto px-5 py-2.5 text-base font-semibold shadow-solida
+      transition-transform duration-100 hover:-translate-y-0.5 active:translate-x-0.5
+      active:translate-y-0.5 active:shadow-solida-sm disabled:cursor-not-allowed
+      disabled:opacity-60 disabled:hover:translate-y-0;
+  }
+
+  .btn-primario {
+    @apply bg-codigo-agua-escuro text-white;
+  }
+
+  .btn-destaque {
+    @apply bg-codigo-coral-escuro text-white;
+  }
+
+  .btn-secundario {
+    @apply bg-white text-codigo-texto;
+  }
+
+  .btn-grande {
+    @apply px-7 py-3.5 text-lg;
+  }
+
+  .card {
+    @apply rounded-cartilha-lg border-3 border-codigo-texto bg-white p-6 shadow-solida;
+  }
+
+  .rotulo {
+    @apply mb-1 block font-semibold;
+  }
+
+  .campo {
+    @apply block min-h-[44px] w-full rounded-cartilha border-2 border-codigo-texto bg-white px-4 py-2
+      text-base text-codigo-texto placeholder:text-gray-500;
+  }
+
+  .ajuda-campo {
+    @apply mt-1 text-sm text-gray-700;
+  }
+
+  .erro-campo {
+    @apply mt-1 text-sm font-semibold text-codigo-coral-escuro;
+  }
+
+  .link {
+    @apply font-semibold text-codigo-agua-escuro underline underline-offset-2 hover:text-codigo-texto;
+  }
+
+  .selo {
+    @apply inline-flex items-center gap-1 rounded-full border-2 border-codigo-texto bg-codigo-amarelo
+      px-3 py-0.5 text-sm font-bold;
+  }
+
+  .dica-ouro {
+    @apply rounded-cartilha border-3 border-codigo-texto bg-codigo-amarelo-claro p-4 shadow-solida-sm;
+  }
+}

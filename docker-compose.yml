@@ -1,0 +1,24 @@
+# banco de dados de desenvolvimento: postgresql 16.
+# suba com: docker compose up -d
+services:
+  db:
+    image: postgres:16
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: codigox
+      POSTGRES_USER: codigox
+      POSTGRES_PASSWORD: codigox
+    ports:
+      # se a porta 5432 ja estiver em uso no seu computador, mude db_porta no .env
+      # (e a porta do database_url junto).
+      - "${DB_PORTA:-5432}:5432"
+    volumes:
+      - dados_postgres:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U codigox -d codigox"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+volumes:
+  dados_postgres:

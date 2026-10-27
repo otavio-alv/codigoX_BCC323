@@ -1,0 +1,54 @@
+# Variáveis de ambiente e segredos (mantenha apenas o .env.example versionado)
+.env
+.env.*
+!.env.example
+
+# Banco de dados local (SQLite)
+*.sqlite3
+*.db
+
+# Arquivos gerados pelo Django
+/media/
+/staticfiles/
+/static_root/
+
+# Migrações: não ignorar (são versionadas), apenas caches
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Ambientes virtuais
+venv/
+.venv/
+env/
+ENV/
+
+# Testes e cobertura
+.pytest_cache/
+.coverage
+htmlcov/
+.tox/
+
+# Logs e temporários
+*.log
+*.tmp
+*.bak
+
+# Build e distribuição
+build/
+dist/
+*.egg-info/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# IDEs e editores
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Sistema operacional
+.DS_Store
+Thumbs.db
+desktop.ini

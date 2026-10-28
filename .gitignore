@@ -1,54 +1,21 @@
-# Variáveis de ambiente e segredos (mantenha apenas o .env.example versionado)
+# segredos e configuracao local
 .env
-.env.*
-!.env.example
 
-# Banco de dados local (SQLite)
-*.sqlite3
-*.db
-
-# Arquivos gerados pelo Django
-/media/
-/staticfiles/
-/static_root/
-
-# Migrações: não ignorar (são versionadas), apenas caches
+# python
 __pycache__/
-*.py[cod]
-*$py.class
-
-# Ambientes virtuais
-venv/
+*.pyc
 .venv/
-env/
-ENV/
+venv/
 
-# Testes e cobertura
-.pytest_cache/
-.coverage
-htmlcov/
-.tox/
+# node e css gerado (o ci e o render geram de novo com npm run build:css)
+node_modules/
+static/css/app.css
 
-# Logs e temporários
-*.log
-*.tmp
-*.bak
+# arquivos coletados pelo collectstatic
+staticfiles/
 
-# Build e distribuição
-build/
-dist/
-*.egg-info/
-
-# Jupyter
-.ipynb_checkpoints/
-
-# IDEs e editores
+# editores e sistema
 .vscode/
 .idea/
-*.swp
-*.swo
-
-# Sistema operacional
 .DS_Store
 Thumbs.db
-desktop.ini

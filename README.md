@@ -1,80 +1,112 @@
-# CódigoX
+# Plataforma Jornada Código X
 
-Plataforma gamificada para o ensino de programação e uso do computador para estudantes do ensino fundamental!
+Trabalho prático de Programação Web (UFOP). A plataforma transforma a cartilha
+"Primeiros Passos no Digital" da ONG Código X numa trilha interativa para meninas
+que estão começando no computador: Pré-Trilha com 13 desafios-tutorial, Trilha com
+7 desafios de construção de telas, simuladores, pontos, medalhas e um painel para
+as mentoras.
 
-Projeto prático da disciplina **BCC323 – Programação Web**
+Feito com Django 5.2, PostgreSQL 16 e Tailwind CSS v3.
 
-## Sobre o projeto
+## O que você precisa ter instalado
 
-O CódigoX é uma aplicação web em que os alunos aprendem os primeiros passos no mundo digital por meio de uma trilha de desafios, com pontuação e medalhas. O conteúdo é baseado na cartilha *Jornada Código X: Primeiros Passos no Digital*, do Código X, e cobre desde ligar o computador até o uso de e-mail, ferramentas do Google, atalhos de teclado e componentes do computador.
+- [Python 3.12](https://www.python.org/downloads/)
+- [Docker Desktop](https://www.docker.com/products/docker-desktop/) (roda o PostgreSQL)
+- [Node.js 20 ou mais novo](https://nodejs.org/) (gera o CSS com o Tailwind)
 
-As mentoras gerenciam turmas, acompanham o progresso das alunas e avaliam candidaturas.
+## Instalação passo a passo
 
-## Funcionalidades
+Os comandos abaixo funcionam no terminal do VS Code. Quando o comando for diferente
+no Windows, as duas versões aparecem.
 
-- Cadastro e login com perfis de aluno, mentor e administrador
-- Trilha com 13 desafios e barra de progresso
-- Simuladores interativos: atalhos de teclado e componentes do computador
-- Pontuação e medalhas
-- Formulário de candidatura
-- Painel da mentora: turmas, progresso dos alunos, avaliação de candidaturas e ajuste de pontos
+1. **Clone o repositório e entre na pasta**
 
-## Tecnologias
+   ```bash
+   git clone <endereço-do-repositório>
+   cd codigox
+   ```
 
-| Tecnologia | Uso |
-|---|---|
-| Django | Back-end, rotas, autenticação e templates |
-| Tailwind CSS | Estilização e design system |
-| SQLite | Banco de dados |
+2. **Crie o arquivo `.env`** a partir do exemplo
 
-## Páginas e rotas
+   ```bash
+   cp .env.example .env          # Linux e macOS
+   copy .env.example .env        # Windows
+   ```
 
-### Públicas
+   Abra o `.env` e troque o `SECRET_KEY` por qualquer frase longa.
 
-| Rota | Página |
-|---|---|
-| `/` | Início |
-| `/sobre/` | Sobre o projeto |
-| `/como-funciona/` | Como funciona a trilha |
-| `/contato/` | Contato |
-| `/candidatura/` | Formulário de candidatura |
-| `/login/` | Login |
-| `/cadastro/` | Cadastro |
+3. **Suba o banco PostgreSQL** (o Docker Desktop precisa estar aberto)
 
-### Aluna
+   ```bash
+   docker compose up -d
+   docker compose ps             # espere aparecer "healthy"
+   ```
 
-| Rota | Página |
-|---|---|
-| `/trilha/` | Trilha com progresso |
-| `/desafios/<id>/` | Desafio |
-| `/simuladores/atalhos/` | Simulador de atalhos de teclado |
-| `/simuladores/componentes/` | Simulador de componentes do computador |
-| `/perfil/` | Perfil, pontos e medalhas |
+   Se a porta 5432 já estiver em uso no seu computador, troque `DB_PORTA` no `.env`
+   (por exemplo, para 5433) e troque a porta no `DATABASE_URL` também.
 
-### Mentora
+4. **Crie o ambiente virtual do Python e instale as dependências**
 
-| Rota | Página |
-|---|---|
-| `/painel/` | Visão geral |
-| `/painel/turmas/` | Lista de turmas |
-| `/painel/turmas/nova/` | Criar turma |
-| `/painel/turmas/<id>/` | Detalhes da turma e progresso das alunas |
-| `/painel/alunas/<id>/` | Perfil da aluna e ajuste de pontos |
-| `/painel/candidaturas/` | Lista de candidaturas |
-| `/painel/candidaturas/<id>/` | Avaliar candidatura |
+   ```bash
+   python -m venv .venv
+   source .venv/bin/activate     # Linux e macOS
+   .venv\Scripts\activate        # Windows
+   pip install -r requirements.txt
+   ```
 
-### Administração
+5. **Instale o Tailwind e gere o CSS**
 
-| Rota | Página |
-|---|---|
-| `/admin/` | Painel administrativo do Django |
+   ```bash
+   npm install
+   npm run build:css
+   ```
 
+   Enquanto estiver mexendo nas telas, deixe `npm run watch:css` rodando num
+   terminal separado.
 
-## Equipe
+6. **Crie as tabelas e uma conta de administração**
 
-* Ana Paula Tadim
-* Ana Clara Pereira
-* Beatriz Coelho
-* Heitor Augusto
-* Michelle de Oliveira
-* Otávio Alves
+   ```bash
+   python manage.py migrate
+   python manage.py createsuperuser
+   ```
+
+7. **Rode o servidor** e abra http://localhost:8000
+
+   ```bash
+   python manage.py runserver
+   ```
+
+## Verificação antes de cada pull request
+
+```bash
+python manage.py makemigrations --check
+python manage.py test
+npm run build:css
+```
+
+Os três precisam passar. O GitHub Actions roda a mesma coisa em cada push e em cada
+pull request, com um PostgreSQL 16 de verdade (o projeto não usa SQLite).
+
+## Estrutura
+
+| Pasta | O que tem |
+| --- | --- |
+| `config/` | `settings.py`, `urls.py`, `wsgi.py` |
+| `core/` | Layout comum e páginas de erro |
+| `contas/` | `Usuaria`, login, logout e permissões por perfil |
+| `templates/` | `base.html`, `components/` e páginas 403, 404 e 500 |
+| `static/` | `src/input.css` (fonte do Tailwind), `js/` e `img/` |
+| `docs/` | Decisões do projeto |
+
+Regras de negócio ficam sempre em `services.py`; as views só chamam os services.
+
+## Como contribuir
+
+- Branch a partir de `develop`: `<tipo>/<issue>-<descricao>`, por exemplo
+  `feat/14-concluir-desafio`.
+- Commits no formato `<tipo>(<app>): <descrição no imperativo> (#<issue>)`, com os
+  tipos `feat`, `fix`, `docs` ou `refactor`. Nunca "update", "ajustes" ou "wip".
+- Pull request para `develop` com `Closes #<issue>` na descrição.
+
+As decisões tomadas durante o projeto estão em [`docs/decisoes.md`](docs/decisoes.md).

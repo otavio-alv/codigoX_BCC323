@@ -1,0 +1,7 @@
+{% comment %}
+botao da cartilha. vira link quando recebe href.
+parametros: texto, variante (primario | destaque | secundario), href, tipo (button | submit),
+icone (nome do icone), grande (true/false), classe (classes extras), id, desabilitado.
+uso: {% include "components/botao.html" with texto="entrar" tipo="submit" grande=true %}
+as classes ficam escritas por inteiro para o tailwind encontra-las.
+{% endcomment %}{% if href %}<a href="{{ href }}"{% if id %} id="{{ id }}"{% endif %} class="btn {% if variante == 'destaque' %}btn-destaque{% elif variante == 'secundario' %}btn-secundario{% else %}btn-primario{% endif %}{% if grande %} btn-grande{% endif %} {{ classe|default:'' }}">{% if icone %}{% include "components/icone.html" with nome=icone classe="h-5 w-5" %}{% endif %}<span>{{ texto }}</span></a>{% else %}<button type="{{ tipo|default:'button' }}"{% if id %} id="{{ id }}"{% endif %} class="btn {% if variante == 'destaque' %}btn-destaque{% elif variante == 'secundario' %}btn-secundario{% else %}btn-primario{% endif %}{% if grande %} btn-grande{% endif %} {{ classe|default:'' }}"{% if desabilitado %} disabled{% endif %}>{% if icone %}{% include "components/icone.html" with nome=icone classe="h-5 w-5" %}{% endif %}<span>{{ texto }}</span></button>{% endif %}

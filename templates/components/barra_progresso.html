@@ -1,0 +1,13 @@
+{% comment %}
+barra de quadrados da cartilha (13 na pre-trilha).
+parametros: quadrados (lista com "feito", "atual" ou "bloqueado"), feitos, total, rotulo.
+{% endcomment %}<div role="progressbar" aria-valuemin="0" aria-valuemax="{{ total }}" aria-valuenow="{{ feitos }}"
+     aria-label="{{ rotulo|default:'Progresso' }}: {{ feitos }} de {{ total }} desafios concluídos">
+  <ol class="flex gap-1 sm:gap-1.5" aria-hidden="true">
+    {% for estado in quadrados %}
+      <li class="h-7 flex-1 rounded-md border-2 border-codigo-texto
+        {% if estado == 'feito' %}bg-codigo-coral{% elif estado == 'atual' %}bg-codigo-amarelo{% else %}bg-white{% endif %}"></li>
+    {% endfor %}
+  </ol>
+  <p class="mt-2 text-sm font-semibold">{{ feitos }} de {{ total }} desafios concluídos</p>
+</div>

@@ -12,9 +12,16 @@
   {% block head_extra %}{% endblock %}
 </head>
 <body class="flex min-h-screen flex-col bg-codigo-fundo">
-  {% block cabecalho %}{% endblock %}
+  {% block cabecalho %}
+    {% if user.is_authenticated %}{% include "components/cabecalho.html" %}{% endif %}
+  {% endblock %}
 
   <main id="conteudo" class="flex-1">
+    {% block mensagens %}
+      {% if messages %}
+        <div class="mx-auto max-w-5xl px-4 pt-6 sm:px-6">{% include "components/mensagens.html" %}</div>
+      {% endif %}
+    {% endblock %}
     {% block conteudo %}{% endblock %}
   </main>
 

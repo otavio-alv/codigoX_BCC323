@@ -1,0 +1,13 @@
+{% comment %}
+card com contorno preto e sombra solida. vira link quando recebe href.
+parametros: titulo, texto, href, icone, selo (texto do selo amarelo), classe.
+{% endcomment %}{% if href %}<a href="{{ href }}" class="card block transition-transform hover:-translate-y-1 {{ classe|default:'' }}">{% else %}<div class="card {{ classe|default:'' }}">{% endif %}
+  <div class="flex items-start gap-3">
+    {% if icone %}<span class="rounded-cartilha border-2 border-codigo-texto bg-codigo-amarelo p-2">{% include "components/icone.html" with nome=icone classe="h-6 w-6" %}</span>{% endif %}
+    <div class="min-w-0 flex-1">
+      {% if selo %}<span class="selo mb-2">{{ selo }}</span>{% endif %}
+      <h3 class="break-words">{{ titulo }}</h3>
+      {% if texto %}<p class="mt-1 text-gray-700">{{ texto }}</p>{% endif %}
+    </div>
+  </div>
+{% if href %}</a>{% else %}</div>{% endif %}

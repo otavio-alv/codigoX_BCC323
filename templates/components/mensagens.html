@@ -1,0 +1,20 @@
+{% comment %}
+mensagens do django (messages). erros usam role="alert"; o resto, role="status".
+{% endcomment %}{% if messages %}
+<ul class="space-y-2 {{ classe|default:'' }}">
+  {% for mensagem in messages %}
+    <li role="{% if mensagem.level_tag == 'error' %}alert{% else %}status{% endif %}"
+        class="flex items-start gap-2 rounded-cartilha border-3 border-codigo-texto px-4 py-3 font-medium shadow-solida-sm
+        {% if mensagem.level_tag == 'error' %}bg-red-50{% elif mensagem.level_tag == 'success' %}bg-emerald-50{% elif mensagem.level_tag == 'warning' %}bg-codigo-amarelo-claro{% else %}bg-white{% endif %}">
+      {% if mensagem.level_tag == 'error' or mensagem.level_tag == 'warning' %}
+        {% include "components/icone.html" with nome="alerta" classe="mt-0.5 h-5 w-5" %}
+      {% elif mensagem.level_tag == 'success' %}
+        {% include "components/icone.html" with nome="check" classe="mt-0.5 h-5 w-5" %}
+      {% else %}
+        {% include "components/icone.html" with nome="info" classe="mt-0.5 h-5 w-5" %}
+      {% endif %}
+      <span>{{ mensagem }}</span>
+    </li>
+  {% endfor %}
+</ul>
+{% endif %}

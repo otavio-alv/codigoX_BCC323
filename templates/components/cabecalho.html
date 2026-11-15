@@ -1,0 +1,34 @@
+{% load static %}{% comment %}
+cabecalho da pessoa logada, com o menu do perfil dela e o botao sair.
+{% endcomment %}<header class="border-b-3 border-codigo-texto bg-white">
+  <div class="mx-auto flex max-w-5xl flex-wrap items-center justify-between gap-3 px-4 py-3 sm:px-6">
+    <a href="/" class="flex min-h-[44px] items-center gap-2">
+      <img src="{% static 'img/logo-codigox.svg' %}" alt="" width="40" height="40">
+      <span class="font-titulo text-2xl font-extrabold">Código X</span>
+      <span class="sr-only">: página inicial</span>
+    </a>
+
+    <nav aria-label="Menu principal">
+      <ul class="flex flex-wrap items-center gap-1 sm:gap-2">
+        {% if user.eh_aluna %}
+          <li><a href="/aluna/" class="inline-flex min-h-[44px] items-center rounded-cartilha px-3 font-semibold hover:bg-codigo-amarelo-claro{% if request.path == '/aluna/' %} bg-codigo-amarelo{% endif %}"{% if request.path == '/aluna/' %} aria-current="page"{% endif %}>Minha trilha</a></li>
+          <li><a href="/aluna/perfil/" class="inline-flex min-h-[44px] items-center rounded-cartilha px-3 font-semibold hover:bg-codigo-amarelo-claro{% if request.path == '/aluna/perfil/' %} bg-codigo-amarelo{% endif %}"{% if request.path == '/aluna/perfil/' %} aria-current="page"{% endif %}>Meu perfil</a></li>
+        {% elif user.eh_mentora %}
+          <li><a href="/mentora/" class="inline-flex min-h-[44px] items-center rounded-cartilha px-3 font-semibold hover:bg-codigo-amarelo-claro{% if request.path == '/mentora/' %} bg-codigo-amarelo{% endif %}"{% if request.path == '/mentora/' %} aria-current="page"{% endif %}>Turmas</a></li>
+          <li><a href="/mentora/candidaturas/" class="inline-flex min-h-[44px] items-center rounded-cartilha px-3 font-semibold hover:bg-codigo-amarelo-claro{% if request.path == '/mentora/candidaturas/' %} bg-codigo-amarelo{% endif %}"{% if request.path == '/mentora/candidaturas/' %} aria-current="page"{% endif %}>Candidaturas</a></li>
+        {% elif user.eh_admin %}
+          <li><a href="/admin/" class="inline-flex min-h-[44px] items-center rounded-cartilha px-3 font-semibold hover:bg-codigo-amarelo-claro">Administração</a></li>
+        {% endif %}
+        <li>
+          <form method="post" action="{% url 'contas:logout' %}">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-secundario px-3 py-1.5">
+              {% include "components/icone.html" with nome="sair" classe="h-5 w-5" %}
+              <span>Sair</span>
+            </button>
+          </form>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</header>

@@ -1,0 +1,10 @@
+{% comment %}
+caixa "dica de ouro" da cartilha.
+parametros: texto, classe.
+{% endcomment %}<aside class="dica-ouro {{ classe|default:'' }}" aria-label="Dica de ouro">
+  <p class="flex items-center gap-2 font-titulo text-lg font-extrabold">
+    {% include "components/icone.html" with nome="lampada" classe="h-6 w-6" %}
+    Dica de ouro
+  </p>
+  <p class="mt-1">{{ texto }}</p>
+</aside>

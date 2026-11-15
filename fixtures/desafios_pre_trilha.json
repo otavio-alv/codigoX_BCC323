@@ -1,0 +1,410 @@
+[
+  {
+    "model": "trilha.desafio",
+    "pk": 1,
+    "fields": {
+      "etapa": "pre_trilha",
+      "tipo": "tutorial",
+      "ordem": 1,
+      "titulo": "Colocar a senha",
+      "descricao": "Ligue o notebook e entre com a sua senha.",
+      "passos": [
+        {
+          "texto": "Abra a tampa do notebook e aperte o botão de ligar.",
+          "imagem": null
+        },
+        {
+          "texto": "Espere aparecer a tela com o seu nome.",
+          "imagem": null
+        },
+        {
+          "texto": "Clique no espaço da senha e digite a senha com calma, olhando o teclado.",
+          "imagem": null
+        },
+        {
+          "texto": "Aperte Enter. Pronto, você entrou!",
+          "imagem": null
+        }
+      ],
+      "dica": "A senha diferencia letras maiúsculas e minúsculas. Se não entrar, confira se a tecla Caps Lock está desligada.",
+      "criterios": [],
+      "pontos": 10
+    }
+  },
+  {
+    "model": "trilha.desafio",
+    "pk": 2,
+    "fields": {
+      "etapa": "pre_trilha",
+      "tipo": "tutorial",
+      "ordem": 2,
+      "titulo": "Abrir o Google Chrome e fazer login",
+      "descricao": "Abra o navegador e entre com a sua conta do Google.",
+      "passos": [
+        {
+          "texto": "Procure o ícone redondo e colorido do Chrome na barra de baixo da tela e clique nele.",
+          "imagem": null
+        },
+        {
+          "texto": "No canto de cima, à direita, clique no círculo do perfil.",
+          "imagem": null
+        },
+        {
+          "texto": "Clique em Fazer login e digite o e-mail que a sua mentora passou.",
+          "imagem": null
+        },
+        {
+          "texto": "Digite a senha e clique em Avançar.",
+          "imagem": null
+        }
+      ],
+      "dica": "Quando terminar de usar um computador que não é seu, saia da conta para ninguém entrar no seu lugar.",
+      "criterios": [],
+      "pontos": 10
+    }
+  },
+  {
+    "model": "trilha.desafio",
+    "pk": 3,
+    "fields": {
+      "etapa": "pre_trilha",
+      "tipo": "tutorial",
+      "ordem": 3,
+      "titulo": "Abrir o Google Sala de Aula e participar de uma turma",
+      "descricao": "Entre na turma da Pré-Trilha no Google Sala de Aula.",
+      "passos": [
+        {
+          "texto": "No Chrome, digite classroom.google.com na barra de endereço e aperte Enter.",
+          "imagem": null
+        },
+        {
+          "texto": "Clique no sinal de + no canto de cima da tela.",
+          "imagem": null
+        },
+        {
+          "texto": "Escolha Participar da turma.",
+          "imagem": null
+        },
+        {
+          "texto": "Digite o código da turma que a mentora passou e clique em Participar.",
+          "imagem": null
+        }
+      ],
+      "dica": "O código da turma tem letras e números. Copie igualzinho, sem espaços.",
+      "criterios": [],
+      "pontos": 10
+    }
+  },
+  {
+    "model": "trilha.desafio",
+    "pk": 4,
+    "fields": {
+      "etapa": "pre_trilha",
+      "tipo": "tutorial",
+      "ordem": 4,
+      "titulo": "Fazer um comentário no slide da Pré-Trilha",
+      "descricao": "Deixe um recado para a turma no slide da Pré-Trilha.",
+      "passos": [
+        {
+          "texto": "Abra a turma no Sala de Aula e clique no material Slide da Pré-Trilha.",
+          "imagem": null
+        },
+        {
+          "texto": "Selecione um pedacinho do texto do slide.",
+          "imagem": null
+        },
+        {
+          "texto": "Clique no balãozinho de comentário que aparece do lado.",
+          "imagem": null
+        },
+        {
+          "texto": "Escreva um oi para a turma e clique em Comentar.",
+          "imagem": null
+        }
+      ],
+      "dica": "Comentário serve para conversar sobre o slide sem mudar o que está escrito nele.",
+      "criterios": [],
+      "pontos": 10
+    }
+  },
+  {
+    "model": "trilha.desafio",
+    "pk": 5,
+    "fields": {
+      "etapa": "pre_trilha",
+      "tipo": "tutorial",
+      "ordem": 5,
+      "titulo": "Pesquisar no Google",
+      "descricao": "Faça a sua primeira pesquisa no Google.",
+      "passos": [
+        {
+          "texto": "Abra uma aba nova clicando no sinal de + ao lado das abas.",
+          "imagem": null
+        },
+        {
+          "texto": "Digite no espaço de pesquisa: o que é um computador.",
+          "imagem": null
+        },
+        {
+          "texto": "Aperte Enter e veja os resultados.",
+          "imagem": null
+        },
+        {
+          "texto": "Clique em um resultado e leia um pouquinho.",
+          "imagem": null
+        }
+      ],
+      "dica": "Use poucas palavras. Em vez de uma frase longa, escreva só as palavras mais importantes.",
+      "criterios": [],
+      "pontos": 10
+    }
+  },
+  {
+    "model": "trilha.desafio",
+    "pk": 6,
+    "fields": {
+      "etapa": "pre_trilha",
+      "tipo": "tutorial",
+      "ordem": 6,
+      "titulo": "Abrir o Google Agenda",
+      "descricao": "Encontre o calendário da Pré-Trilha no Google Agenda.",
+      "passos": [
+        {
+          "texto": "No Google, clique no quadradinho de nove pontos no canto de cima.",
+          "imagem": null
+        },
+        {
+          "texto": "Procure o ícone da Agenda e clique nele.",
+          "imagem": null
+        },
+        {
+          "texto": "Veja os dias da semana e procure o evento da Pré-Trilha.",
+          "imagem": null
+        }
+      ],
+      "dica": "Os nove pontinhos abrem todos os aplicativos do Google: Agenda, Drive, Meet e outros.",
+      "criterios": [],
+      "pontos": 10
+    }
+  },
+  {
+    "model": "trilha.desafio",
+    "pk": 7,
+    "fields": {
+      "etapa": "pre_trilha",
+      "tipo": "tutorial",
+      "ordem": 7,
+      "titulo": "Abrir o evento da Pré-Trilha e o link do Meet",
+      "descricao": "Use o evento da Agenda para chegar na chamada de vídeo.",
+      "passos": [
+        {
+          "texto": "Na Agenda, clique no evento da Pré-Trilha.",
+          "imagem": null
+        },
+        {
+          "texto": "Na janelinha que abre, procure o botão Participar com o Google Meet.",
+          "imagem": null
+        },
+        {
+          "texto": "Clique nele: uma aba nova abre com a chamada.",
+          "imagem": null
+        }
+      ],
+      "dica": "Entre no evento alguns minutos antes do horário para dar tempo de testar tudo.",
+      "criterios": [],
+      "pontos": 10
+    }
+  },
+  {
+    "model": "trilha.desafio",
+    "pk": 8,
+    "fields": {
+      "etapa": "pre_trilha",
+      "tipo": "tutorial",
+      "ordem": 8,
+      "titulo": "Habilitar câmera, microfone e áudio e participar da chamada",
+      "descricao": "Prepare a câmera e o microfone e entre na chamada.",
+      "passos": [
+        {
+          "texto": "Se o navegador perguntar, clique em Permitir para a câmera e o microfone.",
+          "imagem": null
+        },
+        {
+          "texto": "Confira se os ícones do microfone e da câmera não estão riscados.",
+          "imagem": null
+        },
+        {
+          "texto": "Clique em Participar agora.",
+          "imagem": null
+        },
+        {
+          "texto": "Diga um oi e pergunte se todo mundo está te ouvindo.",
+          "imagem": null
+        }
+      ],
+      "dica": "Quando não estiver falando, desligue o microfone para o barulho de casa não atrapalhar a chamada.",
+      "criterios": [],
+      "pontos": 10
+    }
+  },
+  {
+    "model": "trilha.desafio",
+    "pk": 9,
+    "fields": {
+      "etapa": "pre_trilha",
+      "tipo": "tutorial",
+      "ordem": 9,
+      "titulo": "Levantar a mão e mandar mensagem no chat da chamada",
+      "descricao": "Peça a vez de falar e escreva no chat do Meet.",
+      "passos": [
+        {
+          "texto": "Na barra de baixo do Meet, clique no ícone da mãozinha para levantar a mão.",
+          "imagem": null
+        },
+        {
+          "texto": "Espere a mentora te chamar e abaixe a mão depois de falar.",
+          "imagem": null
+        },
+        {
+          "texto": "Clique no ícone do balão de conversa para abrir o chat.",
+          "imagem": null
+        },
+        {
+          "texto": "Escreva uma mensagem e aperte Enter.",
+          "imagem": null
+        }
+      ],
+      "dica": "Levantar a mão é o jeito educado de pedir a vez sem interromper ninguém.",
+      "criterios": [],
+      "pontos": 10
+    }
+  },
+  {
+    "model": "trilha.desafio",
+    "pk": 10,
+    "fields": {
+      "etapa": "pre_trilha",
+      "tipo": "tutorial",
+      "ordem": 10,
+      "titulo": "Entrar na salinha do grupo e voltar para a sala principal",
+      "descricao": "Converse com o seu grupo numa salinha separada e depois volte.",
+      "passos": [
+        {
+          "texto": "Quando a mentora abrir as salinhas, aparece um aviso na tela.",
+          "imagem": null
+        },
+        {
+          "texto": "Clique em Participar para entrar na salinha do seu grupo.",
+          "imagem": null
+        },
+        {
+          "texto": "Converse com o grupo sobre a atividade.",
+          "imagem": null
+        },
+        {
+          "texto": "Para voltar, clique em Voltar para a sala principal.",
+          "imagem": null
+        }
+      ],
+      "dica": "Se ficar perdida, levante a mão na salinha: a mentora vê e vem te ajudar.",
+      "criterios": [],
+      "pontos": 10
+    }
+  },
+  {
+    "model": "trilha.desafio",
+    "pk": 11,
+    "fields": {
+      "etapa": "pre_trilha",
+      "tipo": "tutorial",
+      "ordem": 11,
+      "titulo": "Copiar e colar um texto",
+      "descricao": "Use o teclado para copiar um texto e colar em outro lugar.",
+      "passos": [
+        {
+          "texto": "Abra uma página com um texto qualquer.",
+          "imagem": null
+        },
+        {
+          "texto": "Clique antes da primeira palavra, segure o botão do mouse e arraste até o fim do pedaço que quer copiar.",
+          "imagem": null
+        },
+        {
+          "texto": "Aperte Ctrl + C para copiar.",
+          "imagem": null
+        },
+        {
+          "texto": "Clique no lugar onde quer colocar o texto e aperte Ctrl + V para colar.",
+          "imagem": null
+        }
+      ],
+      "dica": "Ctrl + Z desfaz o último passo. Colou no lugar errado? É só desfazer.",
+      "criterios": [],
+      "pontos": 10
+    }
+  },
+  {
+    "model": "trilha.desafio",
+    "pk": 12,
+    "fields": {
+      "etapa": "pre_trilha",
+      "tipo": "tutorial",
+      "ordem": 12,
+      "titulo": "Traduzir um texto ou uma página",
+      "descricao": "Use o Google Tradutor para entender um texto em outra língua.",
+      "passos": [
+        {
+          "texto": "Abra o site translate.google.com.",
+          "imagem": null
+        },
+        {
+          "texto": "Cole um texto em inglês no espaço da esquerda.",
+          "imagem": null
+        },
+        {
+          "texto": "Escolha Português do lado direito e leia a tradução.",
+          "imagem": null
+        },
+        {
+          "texto": "Para traduzir uma página inteira, clique com o botão direito nela e escolha Traduzir para o português.",
+          "imagem": null
+        }
+      ],
+      "dica": "A tradução automática ajuda muito, mas pode errar. Se uma frase ficar estranha, leia o original também.",
+      "criterios": [],
+      "pontos": 10
+    }
+  },
+  {
+    "model": "trilha.desafio",
+    "pk": 13,
+    "fields": {
+      "etapa": "pre_trilha",
+      "tipo": "tutorial",
+      "ordem": 13,
+      "titulo": "Desligar o notebook",
+      "descricao": "Termine o dia desligando o notebook do jeito certo.",
+      "passos": [
+        {
+          "texto": "Salve o que estiver fazendo e feche os programas.",
+          "imagem": null
+        },
+        {
+          "texto": "Clique no botão Iniciar (o ícone do Windows) no canto de baixo.",
+          "imagem": null
+        },
+        {
+          "texto": "Clique no botão de energia e escolha Desligar.",
+          "imagem": null
+        },
+        {
+          "texto": "Espere a tela apagar antes de fechar a tampa.",
+          "imagem": null
+        }
+      ],
+      "dica": "Fechar a tampa só deixa o notebook dormindo. Desligar de verdade ajuda a bateria a durar mais.",
+      "criterios": [],
+      "pontos": 10
+    }
+  }
+]

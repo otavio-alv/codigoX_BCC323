@@ -8,4 +8,5 @@ admin.site.index_title = "Administração da plataforma"
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("", include("contas.urls")),
+    path("", include("trilha.urls")),
 ]

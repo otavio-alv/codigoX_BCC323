@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+
+{% block titulo %}Minha trilha{% endblock %}
+
+{% block conteudo %}
+<div class="pagina space-y-8">
+  <section class="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+    <div>
+      <h1>Olá, {{ user.primeiro_nome }}!</h1>
+      <p class="mt-1 text-lg">Cada desafio é um passo da sua jornada. Vamos nessa?</p>
+    </div>
+    <p class="selo self-start whitespace-nowrap px-4 py-2 text-base sm:self-auto">
+      {% include "components/icone.html" with nome="estrela" classe="h-5 w-5" %}
+      {{ pontos }} ponto{{ pontos|pluralize }}
+    </p>
+  </section>
+
+  <section class="card space-y-5" aria-labelledby="titulo-pre-trilha">
+    <div class="flex flex-wrap items-center justify-between gap-3">
+      <h2 id="titulo-pre-trilha">Pré-Trilha</h2>
+      {% if pre_trilha_concluida %}<span class="selo">{% include "components/icone.html" with nome="check" classe="h-4 w-4" %} Concluída</span>{% endif %}
+    </div>
+
+    {% include "components/barra_progresso.html" with quadrados=quadrados feitos=feitos_pre total=total_pre rotulo="Pré-Trilha" %}
+
+    {% if desafio_atual %}
+      <div class="flex flex-col gap-3 rounded-cartilha border-2 border-codigo-texto bg-codigo-amarelo-claro p-4 sm:flex-row sm:items-center sm:justify-between">
+        <p><span class="font-semibold">Próximo desafio:</span> {{ desafio_atual.titulo }}</p>
+        {% url 'trilha:desafio' desafio_atual.pk as url_atual %}
+        {% include "components/botao.html" with texto="Continuar" href=url_atual variante="destaque" icone="seta" %}
+      </div>
+    {% endif %}
+
+    <ol class="grid gap-3 md:grid-cols-2">
+      {% for item in pre_trilha %}
+        {% include "trilha/_item_desafio.html" %}
+      {% empty %}
+        <li>Os desafios ainda não foram cadastrados. Avise a sua mentora.</li>
+      {% endfor %}
+    </ol>
+  </section>
+
+  <section class="card space-y-5" aria-labelledby="titulo-trilha">
+    <div class="flex flex-wrap items-center justify-between gap-3">
+      <h2 id="titulo-trilha">Trilha: construindo telas</h2>
+      {% if total_trilha %}<span class="text-sm font-semibold">{{ feitos_trilha }} de {{ total_trilha }} concluídos</span>{% endif %}
+    </div>
+
+    {% if not pre_trilha_concluida %}
+      <p class="flex items-start gap-2 rounded-cartilha border-2 border-dashed border-codigo-texto bg-codigo-fundo p-4">
+        {% include "components/icone.html" with nome="cadeado" classe="mt-0.5 h-5 w-5" %}
+        A Trilha abre quando você terminar os {{ total_pre }} desafios da Pré-Trilha.
+      </p>
+    {% endif %}
+
+    {% if trilha %}
+      <ol class="grid gap-3 md:grid-cols-2">
+        {% for item in trilha %}
+          {% include "trilha/_item_desafio.html" %}
+        {% endfor %}
+      </ol>
+    {% endif %}
+  </section>
+</div>
+{% endblock %}

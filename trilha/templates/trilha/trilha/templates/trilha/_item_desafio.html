@@ -1,0 +1,29 @@
+{% comment %}
+um desafio na lista do painel.
+parametros: item (dicionario com desafio e estado: feito, atual ou bloqueado).
+{% endcomment %}{% with d=item.desafio %}
+<li>
+  {% if item.estado == "bloqueado" %}
+    <div class="flex min-h-[64px] items-center gap-3 rounded-cartilha border-2 border-dashed border-gray-400 bg-white/60 px-4 py-3 text-gray-600">
+      <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border-2 border-gray-400 font-titulo text-lg font-extrabold">{{ d.ordem }}</span>
+      <span class="flex-1 font-medium">{{ d.titulo }}</span>
+      {% include "components/icone.html" with nome="cadeado" classe="h-5 w-5" %}
+      <span class="sr-only">(trancado)</span>
+    </div>
+  {% else %}
+    <a href="{% if d.tipo == 'construcao' %}/aluna/construtor/{{ d.pk }}/{% else %}{% url 'trilha:desafio' d.pk %}{% endif %}"
+       class="flex min-h-[64px] items-center gap-3 rounded-cartilha border-3 border-codigo-texto px-4 py-3 shadow-solida-sm transition-transform hover:-translate-y-0.5
+       {% if item.estado == 'atual' %}bg-codigo-amarelo{% else %}bg-white{% endif %}">
+      <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border-2 border-codigo-texto font-titulo text-lg font-extrabold
+        {% if item.estado == 'feito' %}bg-codigo-coral text-white{% else %}bg-white{% endif %}">{{ d.ordem }}</span>
+      <span class="flex-1 font-semibold">{{ d.titulo }}</span>
+      {% if item.estado == "feito" %}
+        {% include "components/icone.html" with nome="check" classe="h-6 w-6" %}
+        <span class="sr-only">(concluído)</span>
+      {% else %}
+        <span class="selo bg-white">Agora!</span>
+      {% endif %}
+    </a>
+  {% endif %}
+</li>
+{% endwith %}

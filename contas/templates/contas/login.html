@@ -3,6 +3,10 @@
 
 {% block titulo %}Entrar{% endblock %}
 
+{# a tela de login e independente: sem cabecalho e com as mensagens dentro do card. #}
+{% block cabecalho %}{% endblock %}
+{% block mensagens %}{% endblock %}
+
 {% block conteudo %}
 <div class="mx-auto flex min-h-screen w-full max-w-md flex-col justify-center px-4 py-10">
   <div class="mb-6 flex items-center justify-center gap-3">
@@ -11,49 +15,44 @@
   </div>
 
   <div class="card">
-    {% if messages %}
-      <ul class="mb-4 space-y-2">
-        {% for mensagem in messages %}
-          <li class="rounded-cartilha border-2 border-codigo-texto bg-codigo-amarelo-claro px-4 py-2">{{ mensagem }}</li>
-        {% endfor %}
-      </ul>
-    {% endif %}
+    {% include "components/mensagens.html" with classe="mb-4" %}
 
-    {% if user.is_authenticated %}
-      <h1 class="mb-2 text-2xl">Você já entrou!</h1>
-      <p class="mb-6">Você está conectada como <strong>{{ user.email }}</strong>.</p>
-      <form method="post" action="{% url 'contas:logout' %}">
-        {% csrf_token %}
-        <button type="submit" class="btn btn-secundario w-full">Sair</button>
-      </form>
-    {% else %}
-      <h1 class="mb-1 text-2xl sm:text-3xl">Que bom te ver por aqui!</h1>
-      <p class="mb-6 text-gray-700">Entre com o seu e-mail e a sua senha para continuar a jornada.</p>
+    <h1 class="mb-1 text-2xl sm:text-3xl">Que bom te ver por aqui!</h1>
+    <p class="mb-6 text-gray-700">Entre com o seu e-mail e a sua senha para continuar a jornada.</p>
 
-      <form method="post" action="{% url 'contas:login' %}" class="space-y-5" novalidate>
-        {% csrf_token %}
-        <input type="hidden" name="next" value="{{ next }}">
-
+    {% if form.non_field_errors %}
+      <div id="erro-login" role="alert" class="mb-5 flex items-start gap-2 rounded-cartilha border-3 border-codigo-texto bg-red-50 px-4 py-3 font-medium">
+        {% include "components/icone.html" with nome="alerta" classe="mt-0.5 h-5 w-5 text-codigo-coral-escuro" %}
         <div>
-          <label for="{{ form.username.id_for_label }}" class="rotulo">{{ form.username.label }}</label>
-          <input type="email" name="{{ form.username.html_name }}" id="{{ form.username.id_for_label }}"
-                 value="{{ form.username.value|default:'' }}" class="campo" autocomplete="email" required autofocus>
+          {% for erro in form.non_field_errors %}<p>{{ erro }}</p>{% endfor %}
         </div>
-
-        <div>
-          <label for="{{ form.password.id_for_label }}" class="rotulo">{{ form.password.label }}</label>
-          <input type="password" name="{{ form.password.html_name }}" id="{{ form.password.id_for_label }}"
-                 class="campo" autocomplete="current-password" required>
-        </div>
-
-        <button type="submit" class="btn btn-primario btn-grande w-full">Entrar</button>
-      </form>
-
-      <div class="dica-ouro mt-6">
-        <p class="font-titulo text-lg font-extrabold">Dica de ouro</p>
-        <p>Esqueceu a senha? Peça para a sua mentora.</p>
       </div>
     {% endif %}
+
+    <form method="post" action="{% url 'contas:login' %}" class="space-y-5" novalidate>
+      {% csrf_token %}
+      <input type="hidden" name="next" value="{{ next }}">
+
+      <div>
+        <label for="{{ form.username.id_for_label }}" class="rotulo">{{ form.username.label }}</label>
+        <input type="email" name="{{ form.username.html_name }}" id="{{ form.username.id_for_label }}"
+               value="{{ form.username.value|default:'' }}" class="campo" autocomplete="email" required autofocus
+               {% if form.errors %}aria-invalid="true" aria-describedby="erro-login"{% endif %}>
+        {% for erro in form.username.errors %}<p class="erro-campo">{{ erro }}</p>{% endfor %}
+      </div>
+
+      <div>
+        <label for="{{ form.password.id_for_label }}" class="rotulo">{{ form.password.label }}</label>
+        <input type="password" name="{{ form.password.html_name }}" id="{{ form.password.id_for_label }}"
+               class="campo" autocomplete="current-password" required
+               {% if form.errors %}aria-invalid="true" aria-describedby="erro-login"{% endif %}>
+        {% for erro in form.password.errors %}<p class="erro-campo">{{ erro }}</p>{% endfor %}
+      </div>
+
+      {% include "components/botao.html" with texto="Entrar" tipo="submit" grande=True classe="w-full" %}
+    </form>
+
+    {% include "components/dica_ouro.html" with texto="Esqueceu a senha? Peça para a sua mentora." classe="mt-6" %}
   </div>
 
   <nav aria-label="Outros caminhos" class="mt-6 flex flex-col items-center gap-3 sm:flex-row sm:justify-center sm:gap-6">

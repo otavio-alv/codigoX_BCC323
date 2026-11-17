@@ -34,6 +34,7 @@ INSTALLED_APPS = [
     "core",
     "contas",
     "gestao",
+    "trilha",
 ]
 
 MIDDLEWARE = [
@@ -106,6 +107,9 @@ USE_TZ = True
 STATIC_URL = "static/"
 STATICFILES_DIRS = [BASE_DIR / "static"]
 STATIC_ROOT = BASE_DIR / "staticfiles"
+# em desenvolvimento e nos testes o whitenoise procura os arquivos na hora,
+# sem precisar rodar o collectstatic antes.
+WHITENOISE_AUTOREFRESH = DEBUG or TESTANDO
 STORAGES = {
     "default": {"BACKEND": "django.core.files.storage.FileSystemStorage"},
     "staticfiles": {

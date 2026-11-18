@@ -7,7 +7,7 @@ from django.views.decorators.http import require_POST
 from contas.permissions import aluna_requerida
 
 from . import services
-from .models import Desafio, Progresso
+from .models import Desafio, Progresso, Simulador
 
 
 def _quer_json(request):
@@ -71,3 +71,39 @@ def concluir(request, pk):
         )
     messages.success(request, mensagem)
     return redirect(url_proximo or reverse("trilha:painel"))
+
+
+@aluna_requerida
+def simulador(request, tipo):
+    simulador = get_object_or_404(Simulador, tipo=tipo)
+    contexto = {
+        "simulador": simulador,
+        "concluido": services.simulador_concluido(request.user, simulador),
+    }
+    return render(request, f"trilha/simulador_{simulador.tipo}.html", contexto)
+
+
+@require_POST
+@aluna_requerida
+def concluir_simulador(request, tipo):
+    simulador = get_object_or_404(Simulador, tipo=tipo)
+    _, ganhos = services.concluir_simulador(request.user, simulador)
+    mensagem = (
+        f"Parabéns! Você ganhou {ganhos} pontos." if ganhos else "Você já tinha concluído este simulador."
+    )
+    if _quer_json(request):
+        return JsonResponse(
+            {
+                "ok": True,
+                "pontos_ganhos": ganhos,
+                "total": services.total_pontos(request.user),
+                "mensagem": mensagem,
+            }
+        )
+    messages.success(request, mensagem)
+    return redirect("trilha:painel")
+
+
+@aluna_requerida
+def perfil(request):
+    return render(request, "trilha/perfil.html", services.perfil(request.user))

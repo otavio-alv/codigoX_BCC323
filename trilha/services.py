@@ -1,9 +1,9 @@
-"""regras de negocio da trilha: liberacao em ordem (rn04) e pontos (rn05)."""
+"""regras de negocio da trilha: liberacao em ordem (rn04), pontos (rn05) e medalhas."""
 from django.contrib.auth import get_user_model
 from django.db import transaction
 from django.db.models import Sum
 
-from .models import Desafio, Etapa, Pontuacao, Progresso
+from .models import Desafio, Etapa, Pontuacao, Progresso, Simulador
 
 FEITO = "feito"
 ATUAL = "atual"
@@ -117,3 +117,83 @@ def concluir_desafio(aluna, desafio):
             origem=Pontuacao.Origem.DESAFIO,
         )
         return progresso, desafio.pontos
+
+
+def simulador_concluido(aluna, simulador):
+    return Progresso.objects.filter(aluna=aluna, simulador=simulador).exists()
+
+
+def concluir_simulador(aluna, simulador):
+    """rn05 para simuladores: vale simulador.pontos uma unica vez. devolve (progresso, pontos_ganhos)."""
+    with transaction.atomic():
+        get_user_model().objects.select_for_update().get(pk=aluna.pk)
+        progresso, criado = Progresso.objects.get_or_create(aluna=aluna, simulador=simulador)
+        if not criado:
+            return progresso, 0
+        Pontuacao.objects.create(
+            aluna=aluna,
+            valor=simulador.pontos,
+            motivo=f"Simulador concluído: {simulador.titulo}",
+            origem=Pontuacao.Origem.SIMULADOR,
+        )
+        return progresso, simulador.pontos
+
+
+def medalhas(aluna):
+    """medalhas calculadas a partir do progresso, sem tabela propria."""
+    concluidos = ids_concluidos(aluna)
+    pre = dict(Desafio.objects.filter(etapa=Etapa.PRE_TRILHA).values_list("ordem", "id"))
+    construcao = list(
+        Desafio.objects.filter(tipo=Desafio.Tipo.CONSTRUCAO).values_list("id", flat=True)
+    )
+    simuladores = set(
+        Progresso.objects.filter(aluna=aluna, simulador__isnull=False).values_list(
+            "simulador__tipo", flat=True
+        )
+    )
+
+    primeiros_cinco = [pre.get(ordem) for ordem in range(1, 6)]
+    return [
+        {
+            "nome": "Exploradora",
+            "descricao": "Concluiu os desafios 1 a 5 da Pré-Trilha.",
+            "icone": "busca",
+            "conquistada": all(i is not None and i in concluidos for i in primeiros_cinco),
+        },
+        {
+            "nome": "Conectada",
+            "descricao": "Concluiu os 13 desafios da Pré-Trilha.",
+            "icone": "computador",
+            "conquistada": bool(pre) and all(i in concluidos for i in pre.values()),
+        },
+        {
+            "nome": "Mestre dos atalhos",
+            "descricao": "Concluiu o simulador de atalhos do teclado.",
+            "icone": "teclado",
+            "conquistada": Simulador.Tipo.ATALHOS in simuladores,
+        },
+        {
+            "nome": "Criadora de telas",
+            "descricao": "Concluiu o primeiro desafio de construção.",
+            "icone": "celular",
+            "conquistada": any(i in concluidos for i in construcao),
+        },
+        {
+            "nome": "Inventora",
+            "descricao": "Concluiu os 7 desafios de construção.",
+            "icone": "estrela",
+            "conquistada": bool(construcao) and all(i in concluidos for i in construcao),
+        },
+    ]
+
+
+def perfil(aluna):
+    """dados da pagina meu perfil: pontos, historico e medalhas."""
+    lista_medalhas = medalhas(aluna)
+    return {
+        "pontos": total_pontos(aluna),
+        "medalhas": lista_medalhas,
+        "total_medalhas": sum(1 for m in lista_medalhas if m["conquistada"]),
+        "historico": aluna.pontuacoes.select_related("mentora")[:50],
+        "desafios_concluidos": Progresso.objects.filter(aluna=aluna, desafio__isnull=False).count(),
+    }

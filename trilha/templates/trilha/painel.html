@@ -61,5 +61,15 @@
       </ol>
     {% endif %}
   </section>
+
+  <section aria-labelledby="titulo-simuladores" class="space-y-4">
+    <h2 id="titulo-simuladores">Simuladores para treinar</h2>
+    <div class="grid gap-4 md:grid-cols-2">
+      {% url 'trilha:simulador' 'atalhos' as url_atalhos %}
+      {% url 'trilha:simulador' 'componentes' as url_componentes %}
+      {% include "components/card.html" with titulo="Atalhos do teclado" texto="Treine Ctrl + C, Ctrl + V e outros atalhos." href=url_atalhos icone="teclado" selo="5 pontos" %}
+      {% include "components/card.html" with titulo="Peças do computador" texto="Quiz rápido sobre monitor, teclado, memória e mais." href=url_componentes icone="computador" selo="5 pontos" %}
+    </div>
+  </section>
 </div>
 {% endblock %}

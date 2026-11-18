@@ -37,14 +37,35 @@ class Desafio(models.Model):
         return f"{self.get_etapa_display()} {self.ordem}: {self.titulo}"
 
 
+class Simulador(models.Model):
+    class Tipo(models.TextChoices):
+        ATALHOS = "atalhos", "Atalhos de teclado"
+        COMPONENTES = "componentes", "Componentes do computador"
+
+    tipo = models.CharField("tipo", max_length=20, choices=Tipo.choices, unique=True)
+    titulo = models.CharField("título", max_length=120)
+    pontos = models.PositiveSmallIntegerField("pontos", default=5)
+
+    class Meta:
+        verbose_name = "simulador"
+        verbose_name_plural = "simuladores"
+        ordering = ["tipo"]
+
+    def __str__(self):
+        return self.titulo
+
+
 class Progresso(models.Model):
-    """registro de que a aluna concluiu um desafio."""
+    """registro de que a aluna concluiu um desafio ou um simulador (nunca os dois)."""
 
     aluna = models.ForeignKey(
         settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="progressos"
     )
     desafio = models.ForeignKey(
         Desafio, on_delete=models.CASCADE, null=True, blank=True, related_name="progressos"
+    )
+    simulador = models.ForeignKey(
+        Simulador, on_delete=models.CASCADE, null=True, blank=True, related_name="progressos"
     )
     concluido_em = models.DateTimeField("concluído em", default=timezone.now)
 
@@ -54,10 +75,19 @@ class Progresso(models.Model):
         ordering = ["-concluido_em"]
         constraints = [
             models.UniqueConstraint(fields=["aluna", "desafio"], name="progresso_desafio_unico"),
+            models.UniqueConstraint(fields=["aluna", "simulador"], name="progresso_simulador_unico"),
+            # exatamente um dos dois: desafio ou simulador
+            models.CheckConstraint(
+                condition=(
+                    models.Q(desafio__isnull=False, simulador__isnull=True)
+                    | models.Q(desafio__isnull=True, simulador__isnull=False)
+                ),
+                name="progresso_desafio_ou_simulador",
+            ),
         ]
 
     def __str__(self):
-        return f"{self.aluna} concluiu {self.desafio}"
+        return f"{self.aluna} concluiu {self.desafio or self.simulador}"
 
 
 class Pontuacao(models.Model):

@@ -1,0 +1,166 @@
+[
+  {
+    "model": "contas.usuaria",
+    "pk": 101,
+    "fields": {
+      "email": "mentora@exemplo.org",
+      "first_name": "Carla",
+      "last_name": "Mendes",
+      "perfil": "mentora",
+      "password": "pbkdf2_sha256$1000000$cAjJnexXMTA8FCYsfsfFoP$dJulqIzDB2y3Dpn/6eVhzq4T/EZiY3uL9Z4pdrFLLi8=",
+      "is_active": true,
+      "date_joined": "2026-10-01T09:00:00-03:00"
+    }
+  },
+  {
+    "model": "contas.usuaria",
+    "pk": 102,
+    "fields": {
+      "email": "aluna1@exemplo.org",
+      "first_name": "Alice",
+      "last_name": "Rocha",
+      "perfil": "aluna",
+      "password": "pbkdf2_sha256$1000000$cAjJnexXMTA8FCYsfsfFoP$dJulqIzDB2y3Dpn/6eVhzq4T/EZiY3uL9Z4pdrFLLi8=",
+      "is_active": true,
+      "date_joined": "2026-10-01T09:00:00-03:00"
+    }
+  },
+  {
+    "model": "contas.usuaria",
+    "pk": 103,
+    "fields": {
+      "email": "aluna2@exemplo.org",
+      "first_name": "Bianca",
+      "last_name": "Moreira",
+      "perfil": "aluna",
+      "password": "pbkdf2_sha256$1000000$cAjJnexXMTA8FCYsfsfFoP$dJulqIzDB2y3Dpn/6eVhzq4T/EZiY3uL9Z4pdrFLLi8=",
+      "is_active": true,
+      "date_joined": "2026-10-01T09:00:00-03:00"
+    }
+  },
+  {
+    "model": "contas.usuaria",
+    "pk": 104,
+    "fields": {
+      "email": "aluna3@exemplo.org",
+      "first_name": "Clara",
+      "last_name": "Teixeira",
+      "perfil": "aluna",
+      "password": "pbkdf2_sha256$1000000$cAjJnexXMTA8FCYsfsfFoP$dJulqIzDB2y3Dpn/6eVhzq4T/EZiY3uL9Z4pdrFLLi8=",
+      "is_active": true,
+      "date_joined": "2026-10-01T09:00:00-03:00"
+    }
+  },
+  {
+    "model": "contas.usuaria",
+    "pk": 105,
+    "fields": {
+      "email": "aluna4@exemplo.org",
+      "first_name": "Dandara",
+      "last_name": "Silva",
+      "perfil": "aluna",
+      "password": "pbkdf2_sha256$1000000$cAjJnexXMTA8FCYsfsfFoP$dJulqIzDB2y3Dpn/6eVhzq4T/EZiY3uL9Z4pdrFLLi8=",
+      "is_active": true,
+      "date_joined": "2026-10-01T09:00:00-03:00"
+    }
+  },
+  {
+    "model": "contas.usuaria",
+    "pk": 106,
+    "fields": {
+      "email": "aluna5@exemplo.org",
+      "first_name": "Elisa",
+      "last_name": "Cardoso",
+      "perfil": "aluna",
+      "password": "pbkdf2_sha256$1000000$cAjJnexXMTA8FCYsfsfFoP$dJulqIzDB2y3Dpn/6eVhzq4T/EZiY3uL9Z4pdrFLLi8=",
+      "is_active": true,
+      "date_joined": "2026-10-01T09:00:00-03:00"
+    }
+  },
+  {
+    "model": "contas.usuaria",
+    "pk": 107,
+    "fields": {
+      "email": "aluna6@exemplo.org",
+      "first_name": "Flávia",
+      "last_name": "Nogueira",
+      "perfil": "aluna",
+      "password": "pbkdf2_sha256$1000000$cAjJnexXMTA8FCYsfsfFoP$dJulqIzDB2y3Dpn/6eVhzq4T/EZiY3uL9Z4pdrFLLi8=",
+      "is_active": true,
+      "date_joined": "2026-10-01T09:00:00-03:00"
+    }
+  },
+  {
+    "model": "gestao.turma",
+    "pk": 101,
+    "fields": {
+      "nome": "Turma Exemplo",
+      "etapa": "pre_trilha",
+      "ano": 2026,
+      "arquivada": false
+    }
+  },
+  {
+    "model": "gestao.turmausuaria",
+    "pk": 101,
+    "fields": {
+      "turma": 101,
+      "usuaria": 101,
+      "papel": "mentora"
+    }
+  },
+  {
+    "model": "gestao.turmausuaria",
+    "pk": 102,
+    "fields": {
+      "turma": 101,
+      "usuaria": 102,
+      "papel": "aluna"
+    }
+  },
+  {
+    "model": "gestao.turmausuaria",
+    "pk": 103,
+    "fields": {
+      "turma": 101,
+      "usuaria": 103,
+      "papel": "aluna"
+    }
+  },
+  {
+    "model": "gestao.turmausuaria",
+    "pk": 104,
+    "fields": {
+      "turma": 101,
+      "usuaria": 104,
+      "papel": "aluna"
+    }
+  },
+  {
+    "model": "gestao.turmausuaria",
+    "pk": 105,
+    "fields": {
+      "turma": 101,
+      "usuaria": 105,
+      "papel": "aluna"
+    }
+  },
+  {
+    "model": "gestao.turmausuaria",
+    "pk": 106,
+    "fields": {
+      "turma": 101,
+      "usuaria": 106,
+      "papel": "aluna"
+    }
+  },
+  {
+    "model": "gestao.turmausuaria",
+    "pk": 107,
+    "fields": {
+      "turma": 101,
+      "usuaria": 107,
+      "papel": "aluna"
+    }
+  }
+]

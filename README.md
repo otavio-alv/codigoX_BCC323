@@ -13,6 +13,7 @@ Feito com Django 5.2, PostgreSQL 16 e Tailwind CSS v3.
 - [Python 3.12](https://www.python.org/downloads/)
 - [Docker Desktop](https://www.docker.com/products/docker-desktop/) (roda o PostgreSQL)
 - [Node.js 20 ou mais novo](https://nodejs.org/) (gera o CSS com o Tailwind)
+- [Git](https://git-scm.com/)
 
 ## Instalação passo a passo
 
@@ -76,6 +77,22 @@ no Windows, as duas versões aparecem.
    ```bash
    python manage.py runserver
    ```
+
+## Dados de exemplo
+
+Para testar com desafios, simuladores e uma turma pronta:
+
+```bash
+python manage.py loaddata fixtures/desafios_pre_trilha.json fixtures/simuladores.json fixtures/turma_exemplo.json
+```
+
+A turma de exemplo tem uma mentora e seis alunas fictícias. **Todas usam a senha
+`codigox2026`** (só para teste local, nunca em produção):
+
+| Perfil | E-mail |
+| --- | --- |
+| Mentora | `mentora@exemplo.org` |
+| Alunas | `aluna1@exemplo.org` até `aluna6@exemplo.org` |
 
 ## Verificação antes de cada pull request
 

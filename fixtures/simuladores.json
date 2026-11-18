@@ -1,0 +1,20 @@
+[
+  {
+    "model": "trilha.simulador",
+    "pk": 1,
+    "fields": {
+      "tipo": "atalhos",
+      "titulo": "Treino de atalhos do teclado",
+      "pontos": 5
+    }
+  },
+  {
+    "model": "trilha.simulador",
+    "pk": 2,
+    "fields": {
+      "tipo": "componentes",
+      "titulo": "Quiz dos componentes do computador",
+      "pontos": 5
+    }
+  }
+]

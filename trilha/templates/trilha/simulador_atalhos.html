@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block titulo %}{{ simulador.titulo }}{% endblock %}
+
+{% block conteudo %}
+<div class="pagina max-w-3xl space-y-6">
+  <a href="{% url 'trilha:painel' %}" class="link inline-flex min-h-[44px] items-center gap-2">
+    {% include "components/icone.html" with nome="voltar" classe="h-5 w-5" %}
+    Voltar para a minha trilha
+  </a>
+
+  <section id="simulador-atalhos" class="card space-y-6"
+           data-url-concluir="{% url 'trilha:concluir_simulador' simulador.tipo %}">
+    <header>
+      <p class="selo mb-3">Simulador · {{ simulador.pontos }} pontos</p>
+      <h1>{{ simulador.titulo }}</h1>
+      <p class="mt-2 text-lg">Atalhos são combinações de teclas que fazem as coisas mais rápido. Segure a tecla <kbd class="rounded border-2 border-codigo-texto bg-white px-1.5 font-semibold">Ctrl</kbd> e aperte a letra certa.</p>
+      {% if concluido %}<p class="mt-3 font-semibold">Você já concluiu este simulador, mas pode treinar de novo quando quiser.</p>{% endif %}
+    </header>
+
+    <div class="rounded-cartilha-lg border-3 border-codigo-texto bg-codigo-amarelo p-6 text-center">
+      <p id="atalho-contador" class="text-sm font-semibold"></p>
+      <p class="mt-2">Aperte o atalho para:</p>
+      <p id="atalho-acao" class="font-titulo text-4xl font-extrabold"></p>
+    </div>
+
+    <p id="atalho-retorno" class="min-h-[1.5rem] text-center text-lg font-semibold" aria-live="polite"></p>
+    <p id="atalho-dica" class="text-center" aria-live="polite" hidden></p>
+
+    <div class="flex flex-col gap-3 sm:flex-row sm:justify-center">
+      {% include "components/botao.html" with texto="Mostrar dica" variante="secundario" icone="lampada" id="botao-dica" %}
+      {% include "components/botao.html" with texto="Concluí o simulador" variante="destaque" icone="check" id="botao-concluir-simulador" desabilitado=True %}
+    </div>
+    <p id="resultado-simulador" class="text-center font-semibold" aria-live="polite"></p>
+
+    {% include "components/dica_ouro.html" with texto="No Mac, use a tecla Command (⌘) no lugar do Ctrl. Os atalhos funcionam em quase todos os programas!" %}
+  </section>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="{% static 'js/simuladores/atalhos.js' %}"></script>
+{% endblock %}

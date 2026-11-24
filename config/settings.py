@@ -36,6 +36,7 @@ INSTALLED_APPS = [
     "gestao",
     "trilha",
     "inscricoes",
+    "construtor",
 ]
 
 MIDDLEWARE = [

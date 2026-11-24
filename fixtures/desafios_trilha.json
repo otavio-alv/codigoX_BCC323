@@ -1,0 +1,280 @@
+[
+  {
+    "model": "trilha.desafio",
+    "pk": 14,
+    "fields": {
+      "etapa": "trilha",
+      "tipo": "construcao",
+      "ordem": 1,
+      "titulo": "Seu nome na tela",
+      "descricao": "Monte a primeira tela do seu aplicativo com o seu nome.",
+      "passos": [
+        {
+          "texto": "Arraste o componente Rótulo da paleta para a tela do celular (ou clique em Adicionar).",
+          "imagem": null
+        },
+        {
+          "texto": "Clique no rótulo para selecionar.",
+          "imagem": null
+        },
+        {
+          "texto": "No painel de propriedades, escreva o seu nome no campo Texto.",
+          "imagem": null
+        }
+      ],
+      "dica": "Rótulo é o componente que mostra um texto na tela. Ele não é clicável.",
+      "criterios": [
+        {
+          "regra": "existe",
+          "componente": "rotulo",
+          "props": {
+            "texto": "*"
+          },
+          "dica": "Coloque um Rótulo na tela e escreva o seu nome nele."
+        }
+      ],
+      "pontos": 10
+    }
+  },
+  {
+    "model": "trilha.desafio",
+    "pk": 15,
+    "fields": {
+      "etapa": "trilha",
+      "tipo": "construcao",
+      "ordem": 2,
+      "titulo": "Primeiro botão",
+      "descricao": "Coloque um botão para a pessoa clicar.",
+      "passos": [
+        {
+          "texto": "Adicione um Botão na tela.",
+          "imagem": null
+        },
+        {
+          "texto": "Selecione o botão.",
+          "imagem": null
+        },
+        {
+          "texto": "Troque o texto do botão para: Clique aqui.",
+          "imagem": null
+        }
+      ],
+      "dica": "O texto do botão diz o que vai acontecer quando a pessoa clicar.",
+      "criterios": [
+        {
+          "regra": "existe",
+          "componente": "botao",
+          "props": {
+            "texto": "Clique aqui"
+          },
+          "dica": "Coloque um Botão com o texto Clique aqui."
+        }
+      ],
+      "pontos": 10
+    }
+  },
+  {
+    "model": "trilha.desafio",
+    "pk": 16,
+    "fields": {
+      "etapa": "trilha",
+      "tipo": "construcao",
+      "ordem": 3,
+      "titulo": "Botão com estilo",
+      "descricao": "Deixe o seu botão com a sua cara.",
+      "passos": [
+        {
+          "texto": "Adicione um Botão (ou use o que já está na tela).",
+          "imagem": null
+        },
+        {
+          "texto": "Escolha uma cor de fundo diferente da cor padrão.",
+          "imagem": null
+        },
+        {
+          "texto": "Mude o tamanho do botão.",
+          "imagem": null
+        }
+      ],
+      "dica": "Cores fortes chamam a atenção. Use a cor mais forte no botão mais importante da tela.",
+      "criterios": [
+        {
+          "regra": "alterado",
+          "componente": "botao",
+          "props": [
+            "cor_fundo",
+            "tamanho"
+          ],
+          "dica": "Mude a cor de fundo e o tamanho de um botão."
+        }
+      ],
+      "pontos": 10
+    }
+  },
+  {
+    "model": "trilha.desafio",
+    "pk": 17,
+    "fields": {
+      "etapa": "trilha",
+      "tipo": "construcao",
+      "ordem": 4,
+      "titulo": "Caixa de texto",
+      "descricao": "Peça uma informação para quem usa o aplicativo.",
+      "passos": [
+        {
+          "texto": "Adicione uma Caixa de texto.",
+          "imagem": null
+        },
+        {
+          "texto": "Selecione a caixa.",
+          "imagem": null
+        },
+        {
+          "texto": "Escreva no campo Dica: Digite seu nome.",
+          "imagem": null
+        }
+      ],
+      "dica": "A dica aparece clarinha dentro da caixa e some quando a pessoa começa a digitar.",
+      "criterios": [
+        {
+          "regra": "existe",
+          "componente": "caixa_texto",
+          "props": {
+            "dica": "Digite seu nome"
+          },
+          "dica": "Coloque uma Caixa de texto com a dica Digite seu nome."
+        }
+      ],
+      "pontos": 10
+    }
+  },
+  {
+    "model": "trilha.desafio",
+    "pk": 18,
+    "fields": {
+      "etapa": "trilha",
+      "tipo": "construcao",
+      "ordem": 5,
+      "titulo": "Organizando a tela",
+      "descricao": "Use um arranjo para deixar os componentes um embaixo do outro.",
+      "passos": [
+        {
+          "texto": "Adicione um Arranjo vertical.",
+          "imagem": null
+        },
+        {
+          "texto": "Selecione o arranjo e adicione componentes: eles entram dentro dele.",
+          "imagem": null
+        },
+        {
+          "texto": "Coloque pelo menos três componentes dentro do arranjo.",
+          "imagem": null
+        }
+      ],
+      "dica": "Arranjos são caixas invisíveis que organizam a tela. O vertical empilha, o horizontal coloca lado a lado.",
+      "criterios": [
+        {
+          "regra": "minimo_filhos",
+          "componente": "arranjo_vertical",
+          "n": 3,
+          "dica": "Coloque pelo menos 3 componentes dentro de um Arranjo vertical."
+        }
+      ],
+      "pontos": 10
+    }
+  },
+  {
+    "model": "trilha.desafio",
+    "pk": 19,
+    "fields": {
+      "etapa": "trilha",
+      "tipo": "construcao",
+      "ordem": 6,
+      "titulo": "Uma imagem",
+      "descricao": "Deixe a tela mais bonita com uma imagem.",
+      "passos": [
+        {
+          "texto": "Adicione o componente Imagem.",
+          "imagem": null
+        },
+        {
+          "texto": "Selecione a imagem.",
+          "imagem": null
+        },
+        {
+          "texto": "Escolha um desenho da galeria.",
+          "imagem": null
+        }
+      ],
+      "dica": "Toda imagem num aplicativo de verdade precisa de uma descrição para quem usa leitor de tela.",
+      "criterios": [
+        {
+          "regra": "existe",
+          "componente": "imagem",
+          "props": {
+            "imagem": "*"
+          },
+          "dica": "Coloque uma Imagem e escolha um desenho da galeria."
+        }
+      ],
+      "pontos": 10
+    }
+  },
+  {
+    "model": "trilha.desafio",
+    "pk": 20,
+    "fields": {
+      "etapa": "trilha",
+      "tipo": "construcao",
+      "ordem": 7,
+      "titulo": "Tela de login",
+      "descricao": "Junte tudo o que você aprendeu e monte uma tela de login.",
+      "passos": [
+        {
+          "texto": "Adicione uma Caixa de texto com a dica E-mail.",
+          "imagem": null
+        },
+        {
+          "texto": "Adicione outra Caixa de texto e marque a opção Senha.",
+          "imagem": null
+        },
+        {
+          "texto": "Adicione um Botão com o texto Entrar.",
+          "imagem": null
+        },
+        {
+          "texto": "Se quiser, organize tudo num Arranjo vertical e coloque um título.",
+          "imagem": null
+        }
+      ],
+      "dica": "Na caixa de senha, as letras viram bolinhas para ninguém ver o que você digita.",
+      "criterios": [
+        {
+          "regra": "existe",
+          "componente": "caixa_texto",
+          "props": {
+            "dica": "E-mail"
+          },
+          "dica": "Coloque uma Caixa de texto com a dica E-mail."
+        },
+        {
+          "regra": "existe",
+          "componente": "caixa_texto",
+          "props": {
+            "senha": true
+          },
+          "dica": "Coloque uma Caixa de texto com a opção Senha marcada."
+        },
+        {
+          "regra": "existe",
+          "componente": "botao",
+          "props": {
+            "texto": "Entrar"
+          },
+          "dica": "Coloque um Botão com o texto Entrar."
+        }
+      ],
+      "pontos": 10
+    }
+  }
+]

@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+
+{% block titulo %}Meu perfil{% endblock %}
+
+{% block conteudo %}
+<div class="pagina space-y-8">
+  <section class="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+    <div>
+      <h1>Meu perfil</h1>
+      <p class="mt-1 text-lg">{{ user.get_full_name|default:user.email }}</p>
+    </div>
+    <dl class="flex gap-3">
+      <div class="card px-5 py-3 text-center">
+        <dt class="text-sm font-semibold">Pontos</dt>
+        <dd class="font-titulo text-3xl font-extrabold">{{ pontos }}</dd>
+      </div>
+      <div class="card px-5 py-3 text-center">
+        <dt class="text-sm font-semibold">Desafios</dt>
+        <dd class="font-titulo text-3xl font-extrabold">{{ desafios_concluidos }}</dd>
+      </div>
+    </dl>
+  </section>
+
+  <section aria-labelledby="titulo-medalhas" class="space-y-4">
+    <h2 id="titulo-medalhas">Medalhas <span class="text-lg font-semibold">({{ total_medalhas }} de {{ medalhas|length }})</span></h2>
+    <ul class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+      {% for medalha in medalhas %}
+        <li class="flex items-start gap-3 rounded-cartilha-lg border-3 p-4
+          {% if medalha.conquistada %}border-codigo-texto bg-white shadow-solida{% else %}border-dashed border-gray-400 bg-white/60 text-gray-600{% endif %}">
+          <span class="rounded-full border-2 p-2 {% if medalha.conquistada %}border-codigo-texto bg-codigo-amarelo{% else %}border-gray-400{% endif %}">
+            {% include "components/icone.html" with nome=medalha.icone classe="h-7 w-7" %}
+          </span>
+          <div>
+            <h3>{{ medalha.nome }}</h3>
+            <p class="text-sm">{{ medalha.descricao }}</p>
+            <p class="mt-1 text-sm font-semibold">{% if medalha.conquistada %}Conquistada!{% else %}Ainda não conquistada{% endif %}</p>
+          </div>
+        </li>
+      {% endfor %}
+    </ul>
+  </section>
+
+  <section aria-labelledby="titulo-historico" class="card space-y-4">
+    <h2 id="titulo-historico">Histórico de pontos</h2>
+    {% if historico %}
+      <ul class="divide-y-2 divide-dashed divide-gray-300">
+        {% for item in historico %}
+          <li class="flex flex-wrap items-center justify-between gap-2 py-3">
+            <div>
+              <p class="font-medium">{{ item.motivo }}</p>
+              <p class="text-sm text-gray-700">
+                {{ item.criado_em|date:"d/m/Y" }}{% if item.mentora %} · dado por {{ item.mentora.primeiro_nome }}{% endif %}
+              </p>
+            </div>
+            <span class="selo {% if item.valor < 0 %}bg-red-100{% else %}bg-emerald-100{% endif %}">{% if item.valor > 0 %}+{% endif %}{{ item.valor }}</span>
+          </li>
+        {% endfor %}
+      </ul>
+    {% else %}
+      <p>Você ainda não ganhou pontos. Que tal começar o primeiro desafio?</p>
+      {% url 'trilha:painel' as url_painel %}
+      {% include "components/botao.html" with texto="Ir para a minha trilha" href=url_painel icone="seta" %}
+    {% endif %}
+  </section>
+</div>
+{% endblock %}

@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block titulo %}Inscrição{% endblock %}
+
+{% block cabecalho %}
+<header class="border-b-3 border-codigo-texto bg-white">
+  <div class="mx-auto flex max-w-5xl flex-wrap items-center justify-between gap-3 px-4 py-3 sm:px-6">
+    <a href="{% url 'contas:login' %}" class="flex min-h-[44px] items-center gap-2">
+      <img src="{% static 'img/logo-codigox.svg' %}" alt="" width="40" height="40">
+      <span class="font-titulo text-2xl font-extrabold">Código X</span>
+    </a>
+    <a href="{% url 'contas:login' %}" class="link">Já tenho conta: entrar</a>
+  </div>
+</header>
+{% endblock %}
+
+{% block conteudo %}
+<div class="pagina max-w-3xl space-y-6">
+  <header>
+    <h1>Quero participar da jornada!</h1>
+    <p class="mt-2 text-lg">Preencha com calma. Depois de enviar, você recebe um número de protocolo para acompanhar a sua inscrição.</p>
+  </header>
+
+  {% if form.errors %}
+    <div role="alert" class="flex items-start gap-2 rounded-cartilha border-3 border-codigo-texto bg-red-50 px-4 py-3 font-medium">
+      {% include "components/icone.html" with nome="alerta" classe="mt-0.5 h-5 w-5 text-codigo-coral-escuro" %}
+      <p>Alguns campos precisam de atenção. Confira as mensagens em vermelho.</p>
+    </div>
+  {% endif %}
+
+  <form method="post" class="space-y-6" novalidate>
+    {% csrf_token %}
+
+    <fieldset class="card space-y-5">
+      <legend class="float-left mb-2 w-full font-titulo text-2xl font-extrabold">Sobre você</legend>
+      {% include "inscricoes/_campo.html" with campo=form.nome %}
+      <div class="grid gap-5 sm:grid-cols-2">
+        {% include "inscricoes/_campo.html" with campo=form.idade %}
+        {% include "inscricoes/_campo.html" with campo=form.cidade %}
+      </div>
+      {% include "inscricoes/_campo.html" with campo=form.escola %}
+    </fieldset>
+
+    <fieldset class="card space-y-5">
+      <legend class="float-left mb-2 w-full font-titulo text-2xl font-extrabold">Sua carta</legend>
+      {% include "inscricoes/_campo.html" with campo=form.carta %}
+      {% include "inscricoes/_campo.html" with campo=form.link_video %}
+    </fieldset>
+
+    <fieldset class="card space-y-5">
+      <legend class="float-left mb-2 w-full font-titulo text-2xl font-extrabold">Pessoa responsável</legend>
+      <p class="clear-both">Obrigatório para quem tem menos de 18 anos.</p>
+      {% include "inscricoes/_campo.html" with campo=form.nome_responsavel %}
+      {% include "inscricoes/_campo.html" with campo=form.contato_responsavel %}
+      {% include "inscricoes/_campo.html" with campo=form.consentimento %}
+    </fieldset>
+
+    {% include "components/botao.html" with texto="Enviar inscrição" tipo="submit" variante="destaque" icone="seta" grande=True classe="w-full sm:w-auto" %}
+  </form>
+
+  <p>Já se inscreveu? <a href="{% url 'inscricoes:status' %}" class="link">Consulte pelo protocolo</a>.</p>
+</div>
+{% endblock %}

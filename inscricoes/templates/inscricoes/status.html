@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block titulo %}Consultar inscrição{% endblock %}
+
+{% block cabecalho %}
+<header class="border-b-3 border-codigo-texto bg-white">
+  <div class="mx-auto flex max-w-5xl flex-wrap items-center justify-between gap-3 px-4 py-3 sm:px-6">
+    <a href="{% url 'contas:login' %}" class="flex min-h-[44px] items-center gap-2">
+      <img src="{% static 'img/logo-codigox.svg' %}" alt="" width="40" height="40">
+      <span class="font-titulo text-2xl font-extrabold">Código X</span>
+    </a>
+    <a href="{% url 'contas:login' %}" class="link">Ir para o login</a>
+  </div>
+</header>
+{% endblock %}
+
+{% block conteudo %}
+<div class="pagina max-w-xl space-y-6">
+  <h1>Consultar inscrição</h1>
+
+  <form method="get" class="card space-y-5" novalidate>
+    {% include "inscricoes/_campo.html" with campo=form.protocolo %}
+    {% include "components/botao.html" with texto="Consultar" tipo="submit" icone="busca" classe="w-full sm:w-auto" %}
+  </form>
+
+  <div aria-live="polite">
+    {% if candidatura %}
+      <section class="card space-y-3
+        {% if candidatura.status == 'aprovada' %}bg-emerald-50{% elif candidatura.status == 'recusada' %}bg-white{% else %}bg-codigo-amarelo-claro{% endif %}">
+        <p class="selo">Protocolo {{ candidatura.protocolo }}</p>
+        <h2>{{ candidatura.get_status_display }}</h2>
+        {% if candidatura.status == "pendente" %}
+          <p>Recebemos a sua inscrição e ela está em avaliação. Volte aqui em alguns dias!</p>
+        {% elif candidatura.status == "aprovada" %}
+          <p>Parabéns, você foi aprovada! A sua mentora vai entrar em contato com o seu e-mail e a sua senha para entrar na plataforma.</p>
+        {% else %}
+          <p>Desta vez não foi possível. Fique de olho nas próximas turmas: a gente adoraria ver você de novo!</p>
+        {% endif %}
+      </section>
+    {% elif procurou %}
+      <p class="rounded-cartilha border-3 border-codigo-texto bg-white px-4 py-3 font-medium">
+        Não encontramos esse protocolo. Confira as letras e os números e tente de novo.
+      </p>
+    {% endif %}
+  </div>
+
+  {% include "components/dica_ouro.html" with texto="O protocolo tem 8 letras e números. Ele aparece logo depois que você envia a inscrição." %}
+
+  <p><a href="{% url 'inscricoes:inscricao' %}" class="link">Ainda não me inscrevi</a></p>
+</div>
+{% endblock %}

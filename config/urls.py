@@ -10,4 +10,5 @@ urlpatterns = [
     path("", include("contas.urls")),
     path("", include("trilha.urls")),
     path("", include("inscricoes.urls")),
+    path("", include("construtor.urls")),
 ]

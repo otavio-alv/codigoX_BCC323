@@ -1,0 +1,17 @@
+{% comment %}
+um campo de formulario com rotulo, ajuda e erros.
+parametros: campo (o boundfield do django). o django ja liga a ajuda com aria-describedby
+e marca aria-invalid quando ha erro.
+{% endcomment %}<div>
+  {% if campo.widget_type == "checkbox" %}
+    <div class="flex items-start gap-3 rounded-cartilha border-2 border-codigo-texto bg-white p-3">
+      {{ campo }}
+      <label for="{{ campo.id_for_label }}" class="font-medium">{{ campo.label }}</label>
+    </div>
+  {% else %}
+    <label for="{{ campo.id_for_label }}" class="rotulo">{{ campo.label }}{% if not campo.field.required %} <span class="font-normal text-gray-700">(opcional)</span>{% endif %}</label>
+    {{ campo }}
+  {% endif %}
+  {% if campo.help_text %}<p id="{{ campo.auto_id }}_helptext" class="ajuda-campo">{{ campo.help_text }}</p>{% endif %}
+  {% for erro in campo.errors %}<p class="erro-campo">{{ erro }}</p>{% endfor %}
+</div>
